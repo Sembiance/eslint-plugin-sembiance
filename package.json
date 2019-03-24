@@ -1,9 +1,6 @@
 {
-	"name"    : "eslint-plugin-sembiance",
-	"version" : "1.0.0",
-	"main"    : "index.js",
-	"depdencies" :
-	{
-		"requireindex" : "~1.2.0"
-	}
+	"name"         : "eslint-plugin-sembiance",
+	"version"      : "1.0.0",
+	"main"         : "index.js",
+	"dependencies" : { "requireindex" : "~1.2.0" }
 }
