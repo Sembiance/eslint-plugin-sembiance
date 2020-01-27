@@ -1,6 +1,6 @@
 {
 	"name"         : "eslint-plugin-sembiance",
-	"version"      : "1.0.0",
+	"version"      : "1.1.0",
 	"main"         : "index.js",
 	"dependencies" : { "glob" : "~7.1.6" }
 }
