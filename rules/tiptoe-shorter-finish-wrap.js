@@ -37,12 +37,6 @@ module.exports = function rule(helper)
 						return;
 
 					context.report({node, message : "Just pass 'this.finish' instead of: " + helper.toText(node)});
-				},
-
-				ArrowFunctionExpression(node)
-				{
-					if(helper.toText(node)==="(err) => this.finish(err)")
-						context.report({node, message : "Just pass 'this.finish' instead of: " + helper.toText(node)});
 				}
 			};
 		}
