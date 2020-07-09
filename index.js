@@ -1,7 +1,7 @@
 "use strict";
 
 const XU = require("@sembiance/xu"),
-	glob = require("glob"),
+	glob = require("glob"),	// eslint-disable-line node/no-restricted-require
 	path = require("path");
 
 // Interactive AST explorer, VERY useful: https://astexplorer.net/
@@ -128,7 +128,10 @@ const helper =
 		
 		if(v.type==="SequenceExpression")		// expressions, expressions
 			return v.expressions.map(helper.toText).join(", ");
-		
+
+		if(v.type==="TaggedTemplateExpression")
+			return helper.toText(v.tag) + helper.toText(v.quasi);
+			
 		throw new Error("Unsupported helper.toText type [" + v.type + "] at loc: " + JSON.stringify(v.loc));
 	}
 };

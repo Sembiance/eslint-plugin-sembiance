@@ -40,7 +40,7 @@ module.exports = function rule(helper)
 					if(blockBody.type==="ExpressionStatement" && ["AssignmentExpression", "UnaryExpression", "ForStatement"].includes(blockBody.expression.type))
 						return;
 					
-					if(blockBody.type==="ExpressionStatement" && blockBody.expression.type==="CallExpression" && blockBody.expression.arguments.map(v => v.type).includes("ArrowFunctionExpression"))
+					if(blockBody.type==="ExpressionStatement" && blockBody.expression.type==="CallExpression" && (blockBody.expression.callee.name==="tiptoe" || blockBody.expression.arguments.map(v => v.type).includes("ArrowFunctionExpression")))
 						return;
 
 					if(helper.toText(node.parent).length>260)

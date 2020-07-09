@@ -2,6 +2,9 @@
 	"name"         : "eslint-plugin-sembiance",
 	"version"      : "1.1.0",
 	"main"         : "index.js",
-	"dependencies" : { "glob" : "~7.1.6" },
+	"dependencies" : {
+		"@sembiance/xu" : "link:/mnt/compendium/DevLab/node-modules/xu",
+		"glob"          : "~7.1.6"
+	},
 	"engines"      : { "node" : ">=14" }
 }
