@@ -1,9 +1,0 @@
-Waiting on ESLint parser support: https://github.com/eslint/eslint/issues/12642
-Who is waiting on estree support: https://github.com/estree/estree/pull/204
-
-Once added, hopefuly ESLint itself creates a rule for it, but if not, I should create my own.
-
-https://2ality.com/2019/07/optional-chaining.html
-https://remysharp.com/til/javascript/no-undefsafe
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining
-const priority = fileHandler.hasOwnProperty("priority") ? fileHandler.priority : A.PRIORITY.STANDARD

@@ -38,7 +38,7 @@ module.exports = function rule(helper)
 					Object.forEach(assignments, (fromName, toData) =>
 					{
 						if(toData.varNames.length>1)
-							context.report({node : toData.nodes[0], message : "Better written as: {" + toData.nodes.map(node => helper.toText(node.id)).join(", ") + "} = " + fromName});
+							context.report({node : toData.nodes[0], message : `Better written as: {${toData.nodes.map(node => helper.toText(node.id)).join(", ")}} = ${fromName}`});
 					});
 
 					// Currently treats const, var and let the same

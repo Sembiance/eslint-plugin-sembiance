@@ -1,0 +1,7 @@
+I'm already using "@typescript-eslint/prefer-optional-chain"
+However there are a lot of other rules that I may want to consider adopting.
+Many are typescript specific, which I should just ignore, but there may be some good ones that are JS compatible.
+Take a look at the top table "Supported Rules" here:
+https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin
+The ones listed here are probably safe to use in JS and is a good starting point:
+https://github.com/EvgenyOrekhov/eslint-config-hardcore/blob/master/ts-for-js.json

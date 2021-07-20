@@ -31,7 +31,7 @@ module.exports = function rule(helper)
 					if(!node.callee || node.callee.type!=="MemberExpression" || !node.callee.property || node.callee.property.type!=="Identifier" || !["getAttribute", "setAttribute", "removeAttribute"].includes(node.callee.property.name))
 						return;
 
-					context.report({node, message : "Better written as: " + (node.callee.property.name==="removeAttribute" ? "delete " : "") + helper.toText(node.callee.object) + ".dataset." + node.arguments[0].value.substring(5)});
+					context.report({node, message : `Better written as: ${node.callee.property.name==="removeAttribute" ? "delete " : ""}${helper.toText(node.callee.object)}.dataset.${node.arguments[0].value.substring(5)}`});
 				}
 			};
 		}

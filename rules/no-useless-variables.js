@@ -35,7 +35,7 @@ module.exports = function rule(helper)
 					if(node.parent.body[loc+1].argument.name!==varName)
 						return;
 
-					context.report({node, message : "Variable '" + varName + "' is not needed. Just return it directly."});
+					context.report({node, message : `Variable '${varName}' is not needed. Just return it directly.`});
 				}
 			};
 		}

@@ -41,7 +41,7 @@ module.exports = function rule(helper)
 						return;
 
 					if(block.id.name===block.init.property.name)
-						context.report({node : block, message : "Better written as: {" + block.id.name + "} = " + helper.toText(block.init.object)});
+						context.report({node : block, message : `Better written as: {${block.id.name}} = ${helper.toText(block.init.object)}`});
 				}
 			};
 		}

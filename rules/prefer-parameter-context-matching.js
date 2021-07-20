@@ -66,7 +66,7 @@ module.exports = function rule(helper)
 				if(Object.keys(rewrittenObjects).length===0)
 					return;
 				
-				const message = "Better rewritten as: " + funName + "(" + paramNames.map(paramName =>
+				const message = `Better rewritten as: ${funName}(${paramNames.map(paramName =>
 				{
 					const rewrittenObject = rewrittenObjects[paramName];
 					if(!rewrittenObject)
@@ -77,13 +77,13 @@ module.exports = function rule(helper)
 					{
 						let subr = rewrite.from;
 						if(rewrite.from!==rewrite.to)
-							subr += " : " + rewrite.to;
+							subr += ` : ${rewrite.to}`;
 						if(rewrite.defaultValue)
-							subr += " = " + rewrite.defaultValue;
+							subr += ` = ${rewrite.defaultValue}`;
 						return subr;
 					}).join(", ");
-					return r + "}";
-				}).join(", ") + ")";
+					return `${r}}`;
+				}).join(", ")})`;
 
 				context.report({node : target, message});
 			}

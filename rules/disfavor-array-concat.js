@@ -35,7 +35,7 @@ module.exports = function rule(helper)
 								node.parent.callee.property.name!=="concat")
 								return;
 
-							context.report({node, message : "Don't self assign with Array." + node.property.name + "(). Instead use .push(...val) spread operator."});
+							context.report({node, message : `Don't self assign with Array.${node.property.name}(). Instead use .push(...val) spread operator.`});
 						},
 						// a.slice().concat()
 						node =>

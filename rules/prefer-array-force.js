@@ -50,7 +50,7 @@ module.exports = function rule(helper)
 					if(helper.toText(node.alternate.elements[0])!==helper.toText(args[0]))
 						return;
 					
-					context.report({node, message : "Use Array.force(" + helper.toText(args[0]) + ") instead of Array.isArray(" + helper.toText(args[0]) + ") ? " + helper.toText(args[0]) + " : [" + helper.toText(args[0]) + "]"});
+					context.report({node, message : `Use Array.force(${helper.toText(args[0])}) instead of Array.isArray(${helper.toText(args[0])}) ? ${helper.toText(args[0])} : [${helper.toText(args[0])}]`});
 				}
 			};
 		}

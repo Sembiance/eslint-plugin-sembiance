@@ -1,0 +1,1 @@
+Rules from: https://github.com/SonarSource/eslint-plugin-sonarjs

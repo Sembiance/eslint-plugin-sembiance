@@ -36,7 +36,7 @@ module.exports = function rule(helper)
 					if(!node.arguments || node.arguments.length!==1 || node.arguments[0].type!=="ThisExpression")
 						return;
 
-					context.report({node, message : "Just pass 'this.finish' instead of: " + helper.toText(node)});
+					context.report({node, message : `Just pass 'this.finish' instead of: ${helper.toText(node)}`});
 				}
 			};
 		}

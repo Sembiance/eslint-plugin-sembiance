@@ -1,0 +1,9 @@
+Don't allow template strings that just have a single value and nothing else
+`${whatever}`;
+Prefer just 'whatever' instead
+
+Instead of:
+r.contentURL = path.join(thumbPrefix, `${singleBranch.twigPath}`);
+
+Prefer:
+r.contentURL = path.join(thumbPrefix, singleBranch.twigPath);

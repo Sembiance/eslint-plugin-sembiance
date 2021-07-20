@@ -42,7 +42,7 @@ module.exports = function rule(helper)
 					if(!isInTiptoe)
 						return;
 					
-					context.report({node, message : "Invalid 'this' in tiptoe. Instead do: self." + helper.toText(node.property) + " Use self"});
+					context.report({node, message : `Invalid 'this' in tiptoe. Instead do: self.${helper.toText(node.property)} Use self`});
 				}
 			};
 		}

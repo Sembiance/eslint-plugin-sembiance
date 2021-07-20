@@ -33,7 +33,7 @@ module.exports = function rule(helper)
 					if((+node.arguments[0].value)!==(node.arguments[1].value-1))
 						return;
 					
-					context.report({node, message : "Use .charAt(" + node.arguments[0].value + ") instead of " + helper.toText(node)});
+					context.report({node, message : `Use .charAt(${node.arguments[0].value}) instead of ${helper.toText(node)}`});
 				}
 			};
 		}

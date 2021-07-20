@@ -34,7 +34,7 @@ module.exports = function rule(helper)
 						return;
 					
 					const blockBody = blockBodyArr[0];
-					if(["IfStatement", "ForStatement"].includes(blockBody.type))
+					if(["IfStatement", "ForStatement", "TryStatement"].includes(blockBody.type))
 						return;
 					
 					if(blockBody.type==="ExpressionStatement" && ["AssignmentExpression", "UnaryExpression", "ForStatement"].includes(blockBody.expression.type))
@@ -47,7 +47,7 @@ module.exports = function rule(helper)
 						return;
 					
 					const params = Array.force(node.params);
-					context.report({node, message : "Better written as " + ((params.length!==1 ? "(" : "") + params.map(helper.toText).join(", ") + (params.length!==1 ? ")" : "")) + " => " + helper.toText(blockBody)});
+					context.report({node, message : `Better written as ${(params.length!==1 ? "(" : "") + params.map(helper.toText).join(", ") + (params.length!==1 ? ")" : "")} => ${helper.toText(blockBody)}`});
 				}
 			};
 		}
