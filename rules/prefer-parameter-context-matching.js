@@ -32,7 +32,7 @@ module.exports = function rule(helper)
 			function checkFunction(target, funName, params, body)
 			{
 				const paramNames = getParamNames(params);
-				if(paramNames.length<0 || !body || body.type!=="BlockStatement")
+				if(!body || body.type!=="BlockStatement")
 					return;
 				
 				const rewrittenObjects = {};

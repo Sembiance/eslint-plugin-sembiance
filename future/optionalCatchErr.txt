@@ -1,1 +1,0 @@
-Ensure I have a rule for: For example in 2019 I no longer have to catch(err) {} if I don't use err I can just do catch {} (https://nitayneeman.com/posts/a-taste-from-ecmascript-2019/)

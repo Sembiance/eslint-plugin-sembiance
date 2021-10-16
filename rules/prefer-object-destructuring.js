@@ -32,7 +32,7 @@ module.exports = function rule(helper)
 					for(let i=0;i<block.body.length;i++)
 					{
 						const node = block.body[i];
-						getAssignemnts(node, assignments);
+						getAssignemnts(node);
 					}
 
 					Object.forEach(assignments, (fromName, toData) =>

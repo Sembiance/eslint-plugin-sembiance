@@ -4,7 +4,7 @@
 	"main"         : "index.js",
 	"dependencies" : {
 		"@sembiance/xu" : "link:/mnt/compendium/DevLab/node-modules/xu",
-		"glob"          : "~7.1.6"
+		"glob"          : "~7.2.0"
 	},
 	"engines"      : { "node" : ">=14" }
 }
