@@ -1,9 +1,7 @@
-"use strict";
 /*eslint no-unused-vars: [2, {"argsIgnorePattern" : "^helper$" }]*/
 
 // Interactive AST explorer, VERY useful: https://astexplorer.net/
-
-module.exports = function rule(helper)
+export default function rule(helper)
 {
 	return {
 		meta :
@@ -14,7 +12,7 @@ module.exports = function rule(helper)
 				description : `Prefer using require("../test.js") instead of require(path.join(__dirname, "..", "test.js))`,
 				category    : "Node.js and CommonJS",
 				recommended : false,
-				url         : "https://telparia.com/eslint-plugin-sembiance/rules/prefer-relative-require"
+				url         : "https://sembiance.com/eslint-plugin-sembiance/rules/prefer-relative-require"
 			},
 			schema : []
 		},
@@ -43,4 +41,4 @@ module.exports = function rule(helper)
 			};
 		}
 	};
-};
+}

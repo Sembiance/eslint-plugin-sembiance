@@ -1,10 +1,13 @@
 {
-	"name"         : "eslint-plugin-sembiance",
-	"version"      : "1.1.0",
-	"main"         : "index.js",
-	"dependencies" : {
-		"@sembiance/xu" : "link:/mnt/compendium/DevLab/node-modules/xu",
-		"glob"          : "~7.2.0"
+	"name": "eslint-plugin-sembiance",
+	"version": "1.1.0",
+	"main": "index.js",
+	"type" : "module",
+	"dependencies": {
+		"eslint-transforms": "^3.0.0",
+		"glob": "~11.0.0"
 	},
-	"engines"      : { "node" : ">=14" }
+	"engines": {
+		"node": ">=20"
+	}
 }

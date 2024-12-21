@@ -20,18 +20,11 @@ export default function rule(helper)
 		create(context)
 		{
 			return {
-				CallExpression(node)
+				ClassProperty(node)
 				{
-					if(!node?.callee?.property || node.callee.property.name!=="substring")
-						return;
-					
-					if(node.arguments.length!==2 || node.arguments[0].type!=="Literal" || node.arguments[1].type!=="Literal")
-						return;
-					
-					if((+node.arguments[0].value)!==(node.arguments[1].value-1))
-						return;
-					
-					context.report({node, message : `Use .charAt(${node.arguments[0].value}) instead of ${helper.toText(node)}`});
+					const lastToken = context.getLastToken(node);
+					if(lastToken.type!=="Punctuator" || lastToken.value!==";")
+						context.report({node, message : `Add a semicolon to the end of class properties`});
 				}
 			};
 		}

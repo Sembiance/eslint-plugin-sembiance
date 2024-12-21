@@ -1,9 +1,12 @@
-"use strict";
 /*eslint no-unused-vars: [2, {"argsIgnorePattern" : "^helper$" }]*/
 
-// Interactive AST explorer, VERY useful: https://astexplorer.net/
+Array.force ||= function force(v)
+{
+	return (Array.isArray(v) ? v : [v]);	// eslint-disable-line sembiance/prefer-array-force
+};
 
-module.exports = function rule(helper)
+// Interactive AST explorer, VERY useful: https://astexplorer.net/
+export default function rule(helper)
 {
 	return {
 		meta :
@@ -14,7 +17,7 @@ module.exports = function rule(helper)
 				description : "Prefer shorter arrow functions () => abc() instead of () => { abc(); }",
 				category    : "Node.js and CommonJS",
 				recommended : false,
-				url         : "https://telparia.com/eslint-plugin-sembiance/rules/shorter-arrow-funs"
+				url         : "https://sembiance.com/eslint-plugin-sembiance/rules/shorter-arrow-funs"
 			},
 			schema : []
 		},
@@ -43,7 +46,7 @@ module.exports = function rule(helper)
 					if(blockBody.type==="ExpressionStatement" && blockBody.expression.type==="CallExpression" && (blockBody.expression.callee.name==="tiptoe" || blockBody.expression.arguments.map(v => v.type).includes("ArrowFunctionExpression")))
 						return;
 
-					if(helper.toText(node.parent).length>260)
+					if(helper.toText(node.parent).length>220)
 						return;
 					
 					const params = Array.force(node.params);
@@ -52,4 +55,4 @@ module.exports = function rule(helper)
 			};
 		}
 	};
-};
+}

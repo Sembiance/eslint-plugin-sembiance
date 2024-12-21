@@ -1,9 +1,7 @@
-"use strict";
 /*eslint no-unused-vars: [2, {"argsIgnorePattern" : "^helper$" }]*/
 
 // Interactive AST explorer, VERY useful: https://astexplorer.net/
-
-module.exports = function rule(helper)
+export default function rule(helper)
 {
 	return {
 		meta :
@@ -14,7 +12,7 @@ module.exports = function rule(helper)
 				description : "Prefer using {CD} = require('whatever') instead of CD = require('whatever').CD",
 				category    : "Node.js and CommonJS",
 				recommended : false,
-				url         : "https://telparia.com/eslint-plugin-sembiance/rules/prefer-require-destructuring"
+				url         : "https://sembiance.com/eslint-plugin-sembiance/rules/prefer-require-destructuring"
 			},
 			schema : []
 		},
@@ -46,4 +44,4 @@ module.exports = function rule(helper)
 			};
 		}
 	};
-};
+}

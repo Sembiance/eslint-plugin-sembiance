@@ -1,9 +1,7 @@
-"use strict";
 /*eslint no-unused-vars: [2, {"argsIgnorePattern" : "^helper$" }]*/
 
 // Interactive AST explorer, VERY useful: https://astexplorer.net/
-
-module.exports = function rule(helper)
+export default function rule(helper)
 {
 	return {
 		meta :
@@ -14,7 +12,7 @@ module.exports = function rule(helper)
 				description : "Prefer a shorter finish wrap syntax",
 				category    : "Node.js and CommonJS",
 				recommended : false,
-				url         : "https://telparia.com/eslint-plugin-sembiance/rules/tiptoe-shorter-finish-wrap"
+				url         : "https://sembiance.com/eslint-plugin-sembiance/rules/tiptoe-shorter-finish-wrap"
 			},
 			schema : []
 		},
@@ -24,7 +22,7 @@ module.exports = function rule(helper)
 			return {
 				CallExpression(node)
 				{
-					if(!node.callee || !node.callee.object || node.callee.object.type!=="MemberExpression" || !node.callee.object.object || node.callee.object.object.type!=="ThisExpression")
+					if(!node?.callee?.object || node.callee.object.type!=="MemberExpression" || !node.callee.object.object || node.callee.object.object.type!=="ThisExpression")
 						return;
 					
 					if(!node.callee.object.property || node.callee.object.property.type!=="Identifier" || node.callee.object.property.name!=="finish")
@@ -41,4 +39,4 @@ module.exports = function rule(helper)
 			};
 		}
 	};
-};
+}

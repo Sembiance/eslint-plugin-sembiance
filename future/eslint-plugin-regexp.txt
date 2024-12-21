@@ -1,2 +1,0 @@
-https://github.com/ota-meshi/eslint-plugin-regexp
-

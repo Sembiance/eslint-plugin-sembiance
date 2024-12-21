@@ -1,8 +1,0 @@
-https://2ality.com/2019/08/nullish-coalescing.html
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing_operator
-https://bugzilla.mozilla.org/show_bug.cgi?id=1607095
-https://issuehunt.io/r/sindresorhus/eslint-plugin-unicorn/issues/429
-https://regex101.com/r/DiaDQr/3/
-http://quabr.com:8182/57378411/eslint-rule-for-optional-chaining-nullish-coalescing-operator
-
-

@@ -1,9 +1,7 @@
-"use strict";
 /*eslint no-unused-vars: [2, {"argsIgnorePattern" : "^helper$" }]*/
 
 // Interactive AST explorer, VERY useful: https://astexplorer.net/
-
-module.exports = function rule(helper)
+export default function rule(helper)
 {
 	// NOTE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	// NOTE: I created this in Feb 2020, but it's not as precise as it needs to be in order to always turn on, there are flaws in how I do this. So I disabled it.
@@ -17,7 +15,7 @@ module.exports = function rule(helper)
 				description : "Prefer doing function abc({a, b : z}) instead of function abc(o) { const a = o.a; const z = o.b; }",
 				category    : "Node.js and CommonJS",
 				recommended : false,
-				url         : "https://telparia.com/eslint-plugin-sembiance/rules/prefer-parameter-context-matching"
+				url         : "https://sembiance.com/eslint-plugin-sembiance/rules/prefer-parameter-context-matching"
 			},
 			schema : []
 		},
@@ -121,4 +119,4 @@ module.exports = function rule(helper)
 			};
 		}
 	};
-};
+}

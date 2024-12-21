@@ -1,10 +1,52 @@
-"use strict";
-const XU = require("@sembiance/xu"),
-	glob = require("glob"),	// eslint-disable-line node/no-restricted-require
-	path = require("path");
+import {glob} from "glob";
+import path from "path";
+
+Array.force ||= function force(v)
+{
+	return (Array.isArray(v) ? v : [v]);	// eslint-disable-line sembiance/prefer-array-force
+};
+
+Array.prototype.multiSort ||= function multiSort(_sorters, reverse)
+{
+	const sorters = Array.force(_sorters).filter(v => !!v);
+	if(sorters.length===0)
+		sorters.push(v => v);
+
+	this.sort((a, b) =>
+	{
+		for(let i=0, len=sorters.length;i<len;i++)
+		{
+			const sorter = sorters[i];
+
+			const aVal = sorter(a);
+			const bVal = sorter(b);
+
+			if(typeof aVal==="string")
+			{
+				const stringCompareResult = aVal.localeCompare(bVal);
+				if(stringCompareResult<0)
+					return (reverse && (!Array.isArray(reverse) || reverse[i]) ? 1 : -1);
+
+				if(stringCompareResult>0)
+					return (reverse && (!Array.isArray(reverse) || reverse[i]) ? -1 : 1);
+			}
+			else
+			{
+				if(aVal<bVal)
+					return (reverse && (!Array.isArray(reverse) || reverse[i]) ? 1 : -1);
+
+				if(aVal>bVal)
+					return (reverse && (!Array.isArray(reverse) || reverse[i]) ? -1 : 1);
+			}
+		}
+
+		return 0;
+	});
+
+	return this;
+};
 
 // Interactive AST explorer, VERY useful: https://astexplorer.net/
-
 const helper =
 {
 	toSource(context, v)
@@ -76,7 +118,10 @@ const helper =
 		
 		if(v.type==="Property")					// key : value
 			return `${helper.toText(v.key)} : ${helper.toText(v.value)}`;
-		
+
+		if(v.type==="PropertyDefinition")		// key = value
+			return `${helper.toText(v.key)} = ${helper.toText(v.value)}`;
+
 		if(v.type==="UnaryExpression")			// operator argument	(eg delete variable  or  !var)
 			return v.operator + (v.operator==="delete" ? " " : "") + helper.toText(v.argument);
 		
@@ -91,6 +136,9 @@ const helper =
 		
 		if(v.type==="ForInStatement")			// for(left in right) body
 			return `for(${helper.toText(v.left)} in ${helper.toText(v.right)} ${helper.toText(v.body)}`;
+
+		if(v.type==="ForOfStatement")			// for(left of right) body  or  for await(left of right) body
+			return `for${helper.await ? " await" : ""}(${helper.toText(v.left)} of ${helper.toText(v.right)} ${helper.toText(v.body)}`;
 
 		if(v.type==="UpdateExpression")			// operatorargument  or  argumentoperator		(eg ++i  or  i++)
 			return (v.prefix ? v.operator : "") + helper.toText(v.argument) + (!v.prefix ? v.operator : "");
@@ -127,6 +175,9 @@ const helper =
 		
 		if(v.type==="SequenceExpression")		// expressions, expressions
 			return v.expressions.map(helper.toText).join(", ");
+		
+		if(v.type==="ChainExpression")			// expression
+			return helper.toText(v.expression);
 
 		if(v.type==="ClassProperty")			// key = value
 			return `${helper.toText(v.key)} = ${helper.toText(v.value)}`;
@@ -139,15 +190,28 @@ const helper =
 		
 		if(v.type==="SwitchCase")
 			return `case ${helper.toText(v.test)}: ${v.consequent.map(o => helper.toText(o))}`;
-			
+
+		if(v.type==="AwaitExpression")
+			return `await ${helper.toText(v.argument)}`;
+		
+		if(v.type==="MetaProperty")
+			return `${helper.toText(v.meta)}.${helper.toText(v.property)}`;
+
 		throw new Error(`Unsupported helper.toText type [${v.type}] at loc: ${JSON.stringify(v.loc)}`);
 	}
 };
 
-const rules = {};
-glob.sync(path.join(__dirname, "rules", "*.js")).forEach(ruleFilename =>
+const plugin =
 {
-	rules[path.basename(ruleFilename, path.extname(ruleFilename))] = require(ruleFilename)(helper);		// eslint-disable-line node/global-require
-});
+	meta :
+	{
+		name    : "eslint-plugin-sembiance",
+		version : "1.1.0"
+	},
+	rules : {}
+};
 
-module.exports.rules = rules;
+for(const ruleFilename of glob.sync(path.join(import.meta.dirname, "rules", "*.js")))
+	plugin.rules[path.basename(ruleFilename, path.extname(ruleFilename))] = (await import(ruleFilename)).default(helper);
+
+export default plugin;

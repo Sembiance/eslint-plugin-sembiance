@@ -1,8 +1,13 @@
-"use strict";
 /*eslint no-unused-vars: 0*/
-const XU = require("@sembiance/xu"),
-	url = require("url"),
-	tiptoe = require("tiptoe");
+const WOS = {C : "hello", G : "world"};
+function test()
+{
+	const WOS = {C : "hello", G : "world"};	// eslint-disable-line no-shadow
+	const C = WOS.C, G = WOS.G;
+}
+test();
+
+const C = WOS.C, G = WOS.G;
 
 let a = [];
 const othen = { then() { } };

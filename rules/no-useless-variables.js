@@ -1,9 +1,7 @@
-"use strict";
 /*eslint no-unused-vars: [2, {"argsIgnorePattern" : "^helper$" }]*/
 
 // Interactive AST explorer, VERY useful: https://astexplorer.net/
-
-module.exports = function rule(helper)
+export default function rule(helper)
 {
 	return {
 		meta :
@@ -14,7 +12,7 @@ module.exports = function rule(helper)
 				description : "disallow creation of a variable that is just immediately returned",
 				category    : "Node.js and CommonJS",
 				recommended : false,
-				url         : "https://telparia.com/eslint-plugin-sembiance/rules/no-useless-variables"
+				url         : "https://sembiance.com/eslint-plugin-sembiance/rules/no-useless-variables"
 			},
 			schema : []
 		},
@@ -24,7 +22,7 @@ module.exports = function rule(helper)
 			return {
 				VariableDeclaration(node)
 				{
-					if(!node.parent || !node.parent.body || !node.parent.body.indexOf || !node.declarations || node.declarations.length===0 || node.declarations[0].type!=="VariableDeclarator" || !node.declarations[0].id || !node.declarations[0].id.name)
+					if(!node?.parent?.body?.indexOf || !node.declarations || node.declarations.length===0 || node.declarations[0].type!=="VariableDeclarator" || !node.declarations[0].id || !node.declarations[0].id.name)
 						return;
 					
 					const loc = node.parent.body.indexOf(node);
@@ -40,4 +38,4 @@ module.exports = function rule(helper)
 			};
 		}
 	};
-};
+}
