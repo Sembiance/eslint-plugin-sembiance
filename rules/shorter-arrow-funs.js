@@ -37,10 +37,10 @@ export default function rule(helper)
 						return;
 					
 					const blockBody = blockBodyArr[0];
-					if(["IfStatement", "ForStatement", "TryStatement"].includes(blockBody.type))
+					if(["IfStatement", "ForStatement", "ForOfStatement", "TryStatement"].includes(blockBody.type))
 						return;
 					
-					if(blockBody.type==="ExpressionStatement" && ["AssignmentExpression", "UnaryExpression", "ForStatement"].includes(blockBody.expression.type))
+					if(blockBody.type==="ExpressionStatement" && ["AssignmentExpression", "UnaryExpression", "ForStatement", "ForOfStatement"].includes(blockBody.expression.type))
 						return;
 					
 					if(blockBody.type==="ExpressionStatement" && blockBody.expression.type==="CallExpression" && (blockBody.expression.callee.name==="tiptoe" || blockBody.expression.arguments.map(v => v.type).includes("ArrowFunctionExpression")))

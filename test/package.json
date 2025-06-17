@@ -5,7 +5,7 @@
 	"author"       : "Robert Schultz <robert@cosmicrealms.com>",
 	"private"      : true,
 	"license"      : "UNLICENSED",
-	"engines"      : { "node" : ">=14" },
+	"engines"      : { "node" : ">=21.2.0" },
 	"dependencies" : {
 		"@sembiance/xu"    : "file:/mnt/compendium/DevLab/node-modules/xu",
 		"@sembiance/xutil" : "file:/mnt/compendium/DevLab/node-modules/xutil",

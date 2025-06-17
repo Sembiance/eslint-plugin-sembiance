@@ -193,7 +193,10 @@ const helper =
 
 		if(v.type==="AwaitExpression")
 			return `await ${helper.toText(v.argument)}`;
-		
+
+		if(v.type==="DoWhileStatement")
+			return `do { ${helper.toText(v.body)} } while(${helper.toText(v.test)})`;
+
 		if(v.type==="MetaProperty")
 			return `${helper.toText(v.meta)}.${helper.toText(v.property)}`;
 
